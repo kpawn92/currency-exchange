@@ -6,10 +6,16 @@ First, run the development server:
 
 ```bash
 npm run dev
+npm run test
+npm run report
 # or
 yarn dev
+yarn test
+yarn report
 # or
 pnpm dev
+pnpm test
+pnpm report
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
