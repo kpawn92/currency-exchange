@@ -11,10 +11,6 @@ const Calculator = () => {
     const [to, setTo] = useState('')
     const [data, setData] = useState<ApiLayer>()
 
-
-    // const setDataConvert = useConvertStore(state => state.setDataConvert)
-    // const data = useConvertStore(state => state.dataConvert)
-
     const { mutateAsync, isLoading } = useMutation(fetchData)
 
 
@@ -38,18 +34,16 @@ const Calculator = () => {
 
                     <div className="flex items-center">
                         <div className="px-2">
-                            <span>To:</span>
-                            <DropDown stateValue={{ iValue: to, setIValue: setTo }} />
+                            <DropDown stateValue={{ iValue: to, setIValue: setTo }} label="To" />
                         </div>
 
                         <div className="px-2">
-                            <span>From:</span>
-                            <DropDown stateValue={{ iValue: from, setIValue: setFrom }} />
+                            <DropDown stateValue={{ iValue: from, setIValue: setFrom }} label="From" />
                         </div>
 
-                        <div className="flex flex-col px-2">
-                            <label htmlFor="amount">Amount:</label>
-                            <input type="number" className="rounded-sm bg-gray-800 px-2 py-1" required id="amount" />
+                        <div className="relative flex justify-center items-center shadow bg-gray-800 py-1 px-1 mx-2">
+                            <label htmlFor="amount" className="px-2">Amount</label>
+                            <input type="number" className="px-4 bg-gray-800 rounded-sm border border-gray-700 uppercase" required id="amount" />
                         </div>
                     </div>
 
@@ -59,7 +53,7 @@ const Calculator = () => {
                 </div>
 
                 <div className="text-center py-4">
-                    <div>RESULT:  {data && String(data.result)}</div>
+                    <div>RESULT: <p data-testid='success-message'>{data && String(data.result)}</p></div>
                 </div>
             </div>
         </form>

@@ -1,15 +1,18 @@
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useId, useState } from 'react'
 import { coins } from "../json/coins";
 
 interface Props {
     stateValue: {
         iValue: string
         setIValue: (value: string) => void
-    }
+    };
+    label: string;
 }
 
-const DropDown = ({ stateValue: { iValue, setIValue } }: Props) => {
+const DropDown = ({ stateValue: { iValue, setIValue }, label }: Props) => {
+
+    const id = useId()
 
     const INITIAL_STATE = Object.keys(coins.symbols)
     const [openDD, setOpenDD] = useState(false)
@@ -29,8 +32,9 @@ const DropDown = ({ stateValue: { iValue, setIValue } }: Props) => {
 
     return (
         <div className="relative flex justify-center items-center gap-5">
-            <button type="button" className="relative flex justify-center items-center shadow bg-gray-800">
-                <input type="search" defaultValue={iValue} onChange={handleChange} onBlur={() => setOpenDD(false)} className="px-4 bg-gray-800 uppercase" />
+            <div className="relative flex justify-center items-center shadow bg-gray-800 cursor-pointer">
+                <label htmlFor={id} className="px-2">{label}</label>
+                <input type="search" id={id} defaultValue={iValue} onChange={handleChange} onBlur={() => setOpenDD(false)} className="px-4 bg-gray-800 rounded-sm border border-gray-700 uppercase" />
                 <span className="border-l p-2 hover:bg-gray-600" onClick={() => setOpenDD(!openDD)}>
                     <MdKeyboardArrowDown />
                 </span>
@@ -41,7 +45,7 @@ const DropDown = ({ stateValue: { iValue, setIValue } }: Props) => {
                         ))}
                     </ul>
                 </div>)}
-            </button>
+            </div>
         </div>
     )
 }
