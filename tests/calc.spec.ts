@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 })
 
 test.describe('Testing calc', () => {
-    test('deberia mostrar el resultado', async ({ page }) => {
+    test('Should show the result', async ({ page }) => {
         await page.getByLabel('To').fill('USD');
         await page.getByLabel('From').fill('EUR');
         await page.getByLabel('amount').fill('156');
